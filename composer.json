@@ -16,8 +16,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "illuminate/support": "^5.6|^6.0|^7.0|^8.0",
-        "bigcommerce/api": "dev-master",
-        "spatie/laravel-package-tools": "^1.4.3"
+        "bigcommerce/api": "dev-master"
     },
     "require-dev": {
         "orchestra/testbench": "^6.13",
