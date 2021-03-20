@@ -43,15 +43,15 @@
     "config": {
         "sort-packages": true
     },
-     "extra": {
-         "laravel": {
-             "providers": [
-                 "Oseintow\\Bigcommerce\\BigcommerceServiceProvider"
-             ],
-             "aliases": {
-                 "Bigcommerce": "Oseintow\\Bigcommerce\\Facades\\Bigcommerce"
-             }
-         }
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Oseintow\\Bigcommerce\\BigcommerceServiceProvider"
+            ],
+            "aliases": {
+                "Bigcommerce": "Oseintow\\Bigcommerce\\Facades\\Bigcommerce"
+            }
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
