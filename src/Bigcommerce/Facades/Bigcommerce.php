@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 class Bigcommerce extends Facade {
 
-    protected static function getFacadeAccessor() { return 'bigcommerce'; }
+    protected static function getFacadeAccessor(): string
+    {
+        return 'bigcommerce';
+    }
 
 }

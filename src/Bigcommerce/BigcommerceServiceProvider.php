@@ -2,8 +2,9 @@
 
 namespace Oseintow\Bigcommerce;
 
-use Config;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Oseintow\Bigcommerce\Facades\Bigcommerce;
 
 class BigcommerceServiceProvider extends ServiceProvider
 {
@@ -25,7 +26,7 @@ class BigcommerceServiceProvider extends ServiceProvider
             __DIR__ . '/../config/bigcommerce.php' => config_path('bigcommerce.php'),
         ]);
 
-        $this->app->alias('Bigcommerce', 'Oseintow\Bigcommerce\Facades\Bigcommerce');
+        $this->app->alias('Bigcommerce', Bigcommerce::class);
     }
 
     /**
@@ -46,7 +47,7 @@ class BigcommerceServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return [];
     }

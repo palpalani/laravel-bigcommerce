@@ -1,25 +1,47 @@
 {
     "name": "oseintow/laravel-bigcommerce",
-    "description": "Laravel bigcommerce package",
+    "description": "Laravel BigCommerce package",
     "license": "MIT",
     "authors": [
         {
             "name": "michael osei ntow",
             "email": "oseintow@gmail.com"
+        },
+        {
+            "name": "palPalani",
+            "email": "palani.p@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=7.0.0",
-        "illuminate/support": "^5.4|^6.0|^7.0|^8.0",
-        "bigcommerce/api": "dev-master"
+        "php": "^7.3|^8.0",
+        "illuminate/support": "^5.6|^6.0|^7.0|^8.0",
+        "bigcommerce/api": "dev-master",
+        "spatie/laravel-package-tools": "^1.4.3"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.13",
+        "phpunit/phpunit": "^9.3",
+        "spatie/laravel-ray": "^1.9",
+        "vimeo/psalm": "^4.4"
     },
     "autoload": {
         "psr-4": {
             "Oseintow\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Oseintow\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "psalm": "vendor/bin/psalm",
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
     "config": {
-        "preferred-install": "dist"
+        "sort-packages": true
     },
      "extra": {
          "laravel": {
@@ -30,5 +52,7 @@
                  "Bigcommerce": "Oseintow\\Bigcommerce\\Facades\\Bigcommerce"
              }
          }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

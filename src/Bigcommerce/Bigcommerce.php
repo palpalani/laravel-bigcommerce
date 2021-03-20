@@ -2,25 +2,34 @@
 
 namespace Oseintow\Bigcommerce;
 
-use Config;
+use Exception;
+use Illuminate\Support\Facades\Config;
 use Bigcommerce\Api\Connection as BigcommerceClient;
 use Bigcommerce\Api\Client as BigcommerceCollectionResource;
 use Oseintow\Bigcommerce\Exceptions\BigcommerceApiException;
 
-
 class Bigcommerce
 {
     protected $clientId;
+
     protected $clientSecret;
+
     protected $storeHash;
+
     protected $accessToken;
 
     protected $bigcommerce;
+
     protected $connection;
+
     protected $version = "v3";
+
     protected $authServiceUrl= "https://login.bigcommerce.com/";
+
     protected $baseApiUrl  =  "https://api.bigcommerce.com/";
+
     protected $redirectUrl;
+
     protected $resourceUri;
 
     public function __construct()
@@ -32,8 +41,9 @@ class Bigcommerce
     {
         $connections = ['oAuth', 'basicAuth'];
 
-        if (!in_array($connection, $connections))
+        if (!in_array($connection, $connections, true)) {
             throw new BigcommerceApiException("No connection set", 403);
+        }
 
         $this->connection = $connection;
         $this->$connection();
@@ -133,7 +143,7 @@ class Bigcommerce
                 }
             }
 
-            return $this->version== "v2" ?
+            return $this->version === "v2" ?
                 collect($data) : collect($data)->map(function($value) { return collect($value); });
 
         }catch(Exception $e){
@@ -144,7 +154,7 @@ class Bigcommerce
     public function makeBigcomerceCollectionRequest($method, $args)
     {
         try {
-            if($this->connection == "oAuth"){
+            if($this->connection === "oAuth"){
                 BigcommerceCollectionResource::configure([
                     'client_id'  => $this->clientId,
                     'auth_token' => $this->accessToken,
@@ -152,18 +162,17 @@ class Bigcommerce
                 ]);
             }
 
-            if($this->version == "v3")
+            if($this->version === "v3") {
                 throw new BigcommerceApiException("Bigcommerce collection does not support api version 3", 403);
+            }
 
-            $data = call_user_func_array([BigcommerceCollectionResource::class, $method], $args);
-
-            return $data;
+            return call_user_func_array([BigcommerceCollectionResource::class, $method], $args);
         }catch(Exception $e){
             throw new BigcommerceApiException($e->getMessage(), $e->getCode());
         }
     }
 
-    public function resourceUri($resource)
+    public function resourceUri($resource): string
     {
         $this->resourceUri = $this->baseApiUrl . "stores/" . $this->storeHash . "/{$this->version}/" . $resource;
 
