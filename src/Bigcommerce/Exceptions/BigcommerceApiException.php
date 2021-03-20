@@ -12,7 +12,6 @@ use Exception;
 
 class BigcommerceApiException extends Exception
 {
-
     /**
      * BigcommerceApiException constructor.
      * @param $message

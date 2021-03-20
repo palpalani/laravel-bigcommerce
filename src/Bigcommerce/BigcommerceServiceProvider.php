@@ -2,7 +2,6 @@
 
 namespace Oseintow\Bigcommerce;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Oseintow\Bigcommerce\Facades\Bigcommerce;
 
@@ -36,10 +35,9 @@ class BigcommerceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         $this->app->singleton('bigcommerce', function($app)
-         {
-             return new Bigcommerce();
-         });
+        $this->app->singleton('bigcommerce', function ($app) {
+            return new Bigcommerce();
+        });
     }
 
     /**

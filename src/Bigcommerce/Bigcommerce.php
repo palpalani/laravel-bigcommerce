@@ -2,10 +2,10 @@
 
 namespace Oseintow\Bigcommerce;
 
+use Bigcommerce\Api\Client as BigcommerceCollectionResource;
+use Bigcommerce\Api\Connection as BigcommerceClient;
 use Exception;
 use Illuminate\Support\Facades\Config;
-use Bigcommerce\Api\Connection as BigcommerceClient;
-use Bigcommerce\Api\Client as BigcommerceCollectionResource;
 use Oseintow\Bigcommerce\Exceptions\BigcommerceApiException;
 
 class Bigcommerce
@@ -24,9 +24,9 @@ class Bigcommerce
 
     protected $version = "v3";
 
-    protected $authServiceUrl= "https://login.bigcommerce.com/";
+    protected $authServiceUrl = "https://login.bigcommerce.com/";
 
-    protected $baseApiUrl  =  "https://api.bigcommerce.com/";
+    protected $baseApiUrl = "https://api.bigcommerce.com/";
 
     protected $redirectUrl;
 
@@ -41,7 +41,7 @@ class Bigcommerce
     {
         $connections = ['oAuth', 'basicAuth'];
 
-        if (!in_array($connection, $connections, true)) {
+        if (! in_array($connection, $connections, true)) {
             throw new BigcommerceApiException("No connection set", 403);
         }
 
@@ -62,15 +62,15 @@ class Bigcommerce
         $this->clientId = Config::get('bigcommerce.'.$this->connection.'.client_id');
         $this->clientSecret = Config::get('bigcommerce.'.$this->connection.'.client_secret');
         $this->redirectUrl = Config::get('bigcommerce.'.$this->connection.'.redirect_url');
-        $this->bigcommerce->addHeader("X-Auth-Client", $this->clientId );
+        $this->bigcommerce->addHeader("X-Auth-Client", $this->clientId);
     }
 
     private function basicAuth()
     {
         BigcommerceCollectionResource::configure([
             'store_url' => Config::get('bigcommerce.'.$this->connection.'.store_url'),
-            'username'  => Config::get('bigcommerce.'.$this->connection.'.username'),
-            'api_key'   => Config::get('bigcommerce.'.$this->connection.'.api_key')
+            'username' => Config::get('bigcommerce.'.$this->connection.'.username'),
+            'api_key' => Config::get('bigcommerce.'.$this->connection.'.api_key'),
         ]);
     }
 
@@ -103,7 +103,7 @@ class Bigcommerce
                 "grant_type" => "authorization_code",
                 "code" => $code,
                 "scope" => $scope,
-                "context" => $context
+                "context" => $context,
             ]);
 
         return $response;
@@ -144,9 +144,10 @@ class Bigcommerce
             }
 
             return $this->version === "v2" ?
-                collect($data) : collect($data)->map(function($value) { return collect($value); });
-
-        }catch(Exception $e){
+                collect($data) : collect($data)->map(function ($value) {
+                    return collect($value);
+                });
+        } catch (Exception $e) {
             throw new BigcommerceApiException($e->getMessage(), $e->getCode());
         }
     }
@@ -154,20 +155,20 @@ class Bigcommerce
     public function makeBigcomerceCollectionRequest($method, $args)
     {
         try {
-            if($this->connection === "oAuth"){
+            if ($this->connection === "oAuth") {
                 BigcommerceCollectionResource::configure([
-                    'client_id'  => $this->clientId,
+                    'client_id' => $this->clientId,
                     'auth_token' => $this->accessToken,
-                    'store_hash' => $this->storeHash
+                    'store_hash' => $this->storeHash,
                 ]);
             }
 
-            if($this->version === "v3") {
+            if ($this->version === "v3") {
                 throw new BigcommerceApiException("Bigcommerce collection does not support api version 3", 403);
             }
 
             return call_user_func_array([BigcommerceCollectionResource::class, $method], $args);
-        }catch(Exception $e){
+        } catch (Exception $e) {
             throw new BigcommerceApiException($e->getMessage(), $e->getCode());
         }
     }
@@ -205,5 +206,4 @@ class Bigcommerce
     {
         return $this->bigcommerce->getheader($header);
     }
-
 }
