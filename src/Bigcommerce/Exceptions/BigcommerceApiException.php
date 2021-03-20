@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by oseintow.
- * User: oseintow
- * Date: 9/14/16
- * Time: 7:28 PM
- */
+
+declare(strict_types=1);
 
 namespace Oseintow\Bigcommerce\Exceptions;
 

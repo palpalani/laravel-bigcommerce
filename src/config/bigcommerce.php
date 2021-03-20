@@ -12,7 +12,6 @@ return [
     */
     'default' => env("BC_CONNECTION", 'oAuth'),
 
-
     'basicAuth' => [
         'store_url' => env("BC_STORE_URL", null),
         'username' => env("BC_USERNAME", null),
@@ -24,5 +23,4 @@ return [
         'client_secret' => env("BC_CLIENT_SECRET", null),
         'redirect_url' => env("BC_REDIRECT_URL", null),
     ],
-
 ];

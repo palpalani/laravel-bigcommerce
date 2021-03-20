@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oseintow\Bigcommerce;
 
 use Bigcommerce\Api\Client as BigcommerceCollectionResource;

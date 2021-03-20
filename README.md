@@ -24,6 +24,26 @@ Laravel Bigcommerce requires connection configuration. You will need to publish 
 
 This will create a bigcommerce.php file in the config directory. You will need to set your **auth** keys
 
+This is the contents of the published config file:
+
+```php
+return [
+    'default' => env("BC_CONNECTION", 'oAuth'),
+
+    'basicAuth' => [
+        'store_url' => env("BC_STORE_URL", null),
+        'username' => env("BC_USERNAME", null),
+        'api_key' => env("BC_API_KEY", null),
+    ],
+
+    'oAuth' => [
+        'client_id' => env("BC_CLIENT_ID", null),
+        'client_secret' => env("BC_CLIENT_SECRET", null),
+        'redirect_url' => env("BC_REDIRECT_URL", null),
+    ],
+];
+```
+
 #### OAUTH
 
 Set **CLIENT ID** , **CLIENT SECRET** AND **REDIRECT URL**
@@ -35,6 +55,8 @@ Set **API_KEY** , **USERNAME** AND **STORE URL**
 Let's retrieve access token
 
 ```php
+use Oseintow\Bigcommerce\Facades\Bigcommerce;
+
 Route::get("process_oauth_result",function(\Illuminate\Http\Request $request)
 {
     $response = Bigcommerce::getAccessToken($request->code, $request->scope, $request->context);
@@ -47,7 +69,7 @@ Route::get("process_oauth_result",function(\Illuminate\Http\Request $request)
 
 There are 2 ways to access resource from bigcommerce using this package.
 
-1. Using the http verbs(ie. this gives you more flexibility and also support api v3 and also returns laravel collection)
+1. Using the http verbs(i.e. this gives you more flexibility and also support api v3 and also returns laravel collection)
 2. Using Bigcommerce Collection (this does not support api v3 and laravel collection).
 
 By default, the package support **API v3**
@@ -55,12 +77,16 @@ By default, the package support **API v3**
 To set it to version 2 or 3 use
 
 ```php
+use Oseintow\Bigcommerce\Facades\Bigcommerce;
+
 Bigcommerce::setApiVersion('v2');
 ```
 
 or
 
 ```php
+use Oseintow\Bigcommerce\Facades\Bigcommerce;
+
 Bigcommerce::setApiVersion('v3');
 ```
 
