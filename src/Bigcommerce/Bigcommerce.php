@@ -126,7 +126,7 @@ class Bigcommerce
             'get',
             'post',
             'put',
-            'delete'
+            'delete',
         ];
 
         if (in_array($method, $httpVerbs, true)) {
