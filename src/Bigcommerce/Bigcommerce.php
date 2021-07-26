@@ -98,7 +98,7 @@ class Bigcommerce
     {
         $tokenUrl = $this->authServiceUrl . "oauth2/token";
 
-        $response = $this->bigcommerce->post($tokenUrl, [
+        return $this->bigcommerce->post($tokenUrl, [
                 "client_id" => $this->clientId,
                 "client_secret" => $this->clientSecret,
                 "redirect_uri" => $this->redirectUrl,
@@ -107,8 +107,6 @@ class Bigcommerce
                 "scope" => $scope,
                 "context" => $context,
             ]);
-
-        return $response;
     }
 
     public function setAccessToken($accessToken)
@@ -124,8 +122,14 @@ class Bigcommerce
      */
     public function __call($method, $args)
     {
-        $httpVerbs = ['get', 'post', 'put', 'delete'];
-        if (in_array($method, $httpVerbs)) {
+        $httpVerbs = [
+            'get',
+            'post',
+            'put',
+            'delete'
+        ];
+
+        if (in_array($method, $httpVerbs, true)) {
             return $this->makeHttpVerbRequest($method, $args[0], $args[1] ?? null);
         }
 

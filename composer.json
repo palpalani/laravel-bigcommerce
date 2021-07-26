@@ -30,7 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Oseintow\\Tests\\": "tests"
+            "Oseintow\\Bigcommerce\\Tests\\": "tests"
         }
     },
     "scripts": {
