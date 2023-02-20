@@ -1,8 +1,8 @@
 # Laravel BigCommerce
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/palpalani/laravel-bigcommerce.svg?style=flat-square)](https://packagist.org/packages/palpalani/laravel-bigcommerce)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/palpalani/laravel-bigcommerce/run-tests?label=tests)](https://github.com/palpalani/laravel-bigcommerce/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/palpalani/laravel-bigcommerce/Check%20&%20fix%20styling?label=code%20style)](https://github.com/palpalani/laravel-bigcommerce/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/palpalani/laravel-bigcommerce/run-tests.yml?branch=master&label=tests&style=flat-square)](https://github.com/palpalani/laravel-bigcommerce/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/palpalani/laravel-bigcommerce/fix-php-code-style-issues.yml?branch=master&label=code%20style&style=flat-square)](https://github.com/palpalani/laravel-bigcommerce/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/palpalani/laravel-bigcommerce.svg?style=flat-square)](https://packagist.org/packages/palpalani/laravel-bigcommerce)
 
 Laravel BigCommerce is a simple package which helps to build robust integration into bigcommerce.
