@@ -15,13 +15,13 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^9.0|^10.0|^11.0",
+        "illuminate/support": "^10.0|^11.0|^12.0",
         "bigcommerce/api": "dev-master"
     },
     "require-dev": {
-        "orchestra/testbench": "^7.0|^8.0|^9.0",
-        "phpunit/phpunit": "^9.3|^10.0|^11.0",
-        "vimeo/psalm": "^4.4|^5.0"
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^10.0|^11.0|^12.0",
+        "vimeo/psalm": "^5.0|^6.0"
     },
     "autoload": {
         "psr-4": {
